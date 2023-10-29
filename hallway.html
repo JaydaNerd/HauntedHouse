@@ -6,19 +6,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title> Hallway </title>
+    <title> Begining </title>
     <script src = "script.js" async> </script>
     <link href="style.css" rel="stylesheet" type="text/css" />
 
   </head>
 
-  <body>
-    <p id = "hall"> Back in the hallway again </p>
-    <button onclick="location.href='/bathroom.html'" type="button"> Head right </button>
-    <button onclick="location.href='/livingRoom.html'" type="button"> <button> Head left </button>
-    <button onclick = "still()"> Stand still </button>
+    <body>
+        <p id = "storyText"> You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit. </p>
+
+      <button 
+        onclick="window.location.href = '/bathroom.html'"
+        id = "first">
+        Head Right </button> 
+
+      <button onclick = "window.location.href = '/livingRoom.html'"
+        id = "second"> Head Downstairs </button>
+
+        <button onclick = "textChange('still')" id = "third"> Stand still </button>
+
     </br> </br>
-    <a href="/index.html"> <button onclick = "reset()"> Reset </button>
-  </body>
+      
+   <button 
+     onclick="window.location.href = '/index.html'",
+     onclick = "reset()" 
+     id = "reset"> 
+     Reset </button>
+
+    </body>
+
 
   </html>

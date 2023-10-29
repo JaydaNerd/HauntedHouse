@@ -13,10 +13,21 @@
   </head>
 
   <body>
-    <p id = "hall"> You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit. </p>
-    <button onclick="window.location.href = '/bathroom.html'"> Head Right </button> 
-    <button onclick="window.location.href = '/livingRoom.html'"> Head Downstairs </button>
-    <button onclick = "still()"> Stand still </button>
+        <p id = "storyText"> You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit. </p>
+
+        <button 
+          onclick="window.location.href = '/bathroom.html'"
+          id = "first">
+          Head Right </button> 
+
+        <button onclick = "window.location.href = '/livingRoom.html'"
+         id = "second"> Head Downstairs </button>
+
+      <button onclick = "textChange('still')" id = "third"> Stand still </button>
+
+  </br> </br>
+     <button onclick = "reset()" id = "reset" style="visibility: hidden"> Reset </button>
+
   </body>
 
   </html>
