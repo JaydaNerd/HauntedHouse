@@ -6,29 +6,45 @@ resetBut = document.getElementById("reset");
 
 text = "";
 standStill = 0;
-cabinet = 0;
 
 
 function textChange(curText) {
   switch(curText) {
+    // hallway/index: Stand Still
     case "still":
       still();
       break;
-
+      
+    // bathroom: Check Cabinet
     case "cabinet":
-      text = "You open the broken cabinet and found a note inside. It states break the mirror."
-      cabinet = 1;
-      break;
-
-    case "mirror":
-      if(cabinet == 0) {
-        text = "You look at yourself in the mirror, you look terrified."
-      } else if(cabinet == 1) {
-        text = "You look around, finding a hammer. You throw it, breaking the mirror"
+      if(!sessionStorage.checkCab) {
+        sessionStorage.checkCab = 0;
       }
 
+      if(sessionStorage.checkCab == 0) {
+        text = "You open the broken cabinet and found a note inside. It states break the mirror."
+        sessionStorage.checkCab = 1;
+      } else if (sessionStorage.checkCab == 1) {
+        text = "The cabinet sits empty and uninteresting. You really should break the mirror"
+      } else if (sessionStorage.checkCab  == 2) {
+        text = "There is nothing left."
+      }
+      break;
+      
+    // bathroom: Check Mirror
+    case "mirror":
+      if(sessionStorage.checkCab == 0) {
+        text = "You look at yourself in the mirror, you look terrified."
+      } else if(sessionStorage.checkCab == 1) {
+        text = "You look around, finding a hammer. You throw it, breaking the mirror. You find a golden key hidden within it."
+        sessionStorage.checkCab = 2;
+      } else if (sessionStorage.checkCab == 2) {
+        text = "All that's left is shards."
+      }
       break;
 
+    case "frontDoor":
+      text = "Finally, an exit. You try to open it but there are three locks in the way."
     default:
       break;
   }
@@ -36,6 +52,7 @@ function textChange(curText) {
   display();
 }
 
+//Used for Stand Still. If user is clicked on it five buttons, they die
 function still() {
   standStill++;
   switch(standStill) {
@@ -64,6 +81,7 @@ function still() {
   }
 }
 
+//Sets button visiblity
 function setVisibility(reset, others) {
   resetBut.style.visibility = reset;
   firstBut.style.visibility = others;
@@ -71,7 +89,7 @@ function setVisibility(reset, others) {
   thirdBut.style.visibility = others;
 }
 
-//Resets the story, checks if resets on index
+//Resets the story
 function reset() {
   setVisibility("hidden", "visible");
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
