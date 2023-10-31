@@ -1,0 +1,3 @@
+standStill is meant to be reset each time you leave the room. I figure that you are doing something while each time. 
+
+checkCab is meant to keep the same value each time 

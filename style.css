@@ -23,7 +23,8 @@ body {
 }
 
 p {
-  color: gray; 
+  background-color: black;
+  color: white; 
 }
 
 /* Styles for Desktop Viewport (min-width: 1025px)  */

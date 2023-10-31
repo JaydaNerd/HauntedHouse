@@ -6,9 +6,10 @@ resetBut = document.getElementById("reset");
 
 text = "";
 standStill = 0;
+foundAll = false; 
+locksLeft = 3;
 
-
-function textChange(curText) {
+let textChange = (curText) => {
   switch(curText) {
     // hallway/index: Stand Still
     case "still":
@@ -22,29 +23,43 @@ function textChange(curText) {
       }
 
       if(sessionStorage.checkCab == 0) {
-        text = "You open the broken cabinet and found a note inside. It states break the mirror."
+        text = "You open the broken cabinet and found a note inside. It states break the mirror.";
         sessionStorage.checkCab = 1;
       } else if (sessionStorage.checkCab == 1) {
-        text = "The cabinet sits empty and uninteresting. You really should break the mirror"
-      } else if (sessionStorage.checkCab  == 2) {
-        text = "There is nothing left."
+        text = "The cabinet sits empty and uninteresting. You really should break the mirror";
+      } else if (sessionStorage.checkCab  >= 2) {
+        text = "There is nothing left.";
       }
       break;
       
     // bathroom: Check Mirror
     case "mirror":
+      if(!sessionStorage.checkCab) {
+        sessionStorage.checkCab = 0;
+      }
+      
       if(sessionStorage.checkCab == 0) {
-        text = "You look at yourself in the mirror, you look terrified."
+        text = "You look at yourself in the mirror, you look terrified.";
       } else if(sessionStorage.checkCab == 1) {
-        text = "You look around, finding a hammer. You throw it, breaking the mirror. You find a golden key hidden within it."
+        text = "You look around, finding a hammer. You throw it, breaking the mirror. You find a golden key hidden within it.";
         sessionStorage.checkCab = 2;
-      } else if (sessionStorage.checkCab == 2) {
-        text = "All that's left is shards."
+      } else if (sessionStorage.checkCab >= 2) {
+        text = "All that's left is shards.";
       }
       break;
 
     case "frontDoor":
-      text = "Finally, an exit. You try to open it but there are three locks in the way."
+      if((sessionStorage.checkCab == 2)) {
+        text = "You place the golden key onto the lock. Clink, the lock and key turn to dust. You can feel shivers down your spine.";
+        sessionStorage.checkCab = 3;
+        locksLeft = 2;
+      } else if (locksLeft == 3) {
+        text = "You try to open it but there are three locks in the way.";
+      } else if(locksLeft == 2) {
+        text = "Two Locks Left";
+      }
+      break;
+      
     default:
       break;
   }
@@ -91,6 +106,8 @@ function setVisibility(reset, others) {
 
 //Resets the story
 function reset() {
+  locksLeft = 3;
+  sessionStorage.clear();
   setVisibility("hidden", "visible");
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
   standStill = 0;
@@ -102,3 +119,21 @@ function reset() {
 function display() {
   storyText.innerHTML = text;
 }
+
+ function changeBackground(Num) {
+		if (Num == 1){
+			document.body.style.backgroundImage = "url()";
+		}//jay 
+	 
+	 document.body.style.backgroundImage = "url()";
+ }
+
+
+
+
+// 	  function changeBackground() {
+// 		document.body.style.backgroundImage = "url('new_background_image.jpg')";
+// 	  }
+
+// 	<button onclick="changeBackground()">Change Background</button>
+
