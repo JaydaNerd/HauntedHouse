@@ -13,27 +13,41 @@
   </head>
 
     <body>
-        <p id = "storyText"> You are back at the hallway. You can hear voices creeping up on you. </p>
+      <div id="grid">
 
-      <button 
-        onclick="window.location.href = '/bathroom.html'"
-        id = "first">
-        Head Right </button> 
+        <div class="cell" id="pGrid">
+          <p id = "storyText"> You are back at the hallway. You can hear voices creeping up on you. </p>
+        </div>
 
-      <button onclick = "window.location.href = '/livingRoom.html'"
-        id = "second"> Head Downstairs </button>
+        <div class="cell">
+          <button 
+            onclick="window.location.href = '/bathroom.html'"
+            id = "first">
+            Head Right </button> 
+        </div>
 
-        <button onclick = "textChange('still')" id = "third"> Stand still </button>
+        <div class="cell">
+          <button onclick = "window.location.href = '/livingRoom.html'"
+             id = "second"> Head Downstairs </button>
+        </div>
 
-    </br> </br>
-      
-   <button 
-     onclick="window.location.href = '/index.html'",
-     onclick = "reset()" 
-     id = "reset"> 
-     Reset </button>
+        <div class="cell">
+           <button onclick = "textChange('still')" id = "third"> Stand 
+           still </button>
+        </div>
+
+      <div class="cell" id = "cellReset">
+        <a href="/index.html"> <button onclick = "reset()"> Reset </button>
+      </div>
+
+      <div class="cell">
+          <img src="https://th.bing.com/th/id/OIP.hF9OteN_EnKpABZl1aHGIwHaDP?w=315&h=153&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Hidden" width="50" height="50" id = "hide";>
+      </div>
+
+      </div>
 
     </body>
 
 
   </html>
+

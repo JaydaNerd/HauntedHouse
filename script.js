@@ -59,6 +59,10 @@ let textChange = (curText) => {
         text = "Two Locks Left";
       }
       break;
+
+    case "creakyDoor":
+
+      break;
       
     default:
       break;
@@ -106,8 +110,8 @@ function setVisibility(reset, others) {
 
 //Resets the story
 function reset() {
-  locksLeft = 3;
   sessionStorage.clear();
+  locksLeft = 3;
   setVisibility("hidden", "visible");
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
   standStill = 0;
