@@ -3,20 +3,21 @@ firstBut = document.getElementById("first");
 secBut = document.getElementById("second");
 thirdBut = document.getElementById("third");
 resetBut = document.getElementById("reset");
+img = document.getElementById('hide');
 
 text = "";
 standStill = 0;
 foundAll = false; 
-locksLeft = 3;
 
+// Changes paragraph text
 let textChange = (curText) => {
   switch(curText) {
-    // hallway/index: Stand Still
+    // hallway/index: Stand Still, Josephine
     case "still":
       still();
       break;
       
-    // bathroom: Check Cabinet
+    // bathroom: Check Cabinet, Josephine
     case "cabinet":
       if(!sessionStorage.checkCab) {
         sessionStorage.checkCab = 0;
@@ -32,7 +33,7 @@ let textChange = (curText) => {
       }
       break;
       
-    // bathroom: Check Mirror
+    // bathroom: Check Mirror, Josephine
     case "mirror":
       if(!sessionStorage.checkCab) {
         sessionStorage.checkCab = 0;
@@ -47,31 +48,37 @@ let textChange = (curText) => {
         text = "All that's left is shards.";
       }
       break;
-
+      
+    // living room: Open Front Door, Josephine
     case "frontDoor":
-      if((sessionStorage.checkCab == 2)) {
+      if(!sessionStorage.locksLeft) {
+        sessionStorage.locksLeft = 3;
+      }
+      
+      if ((sessionStorage.checkCab == 2)) {
         text = "You place the golden key onto the lock. Clink, the lock and key turn to dust. You can feel shivers down your spine.";
         sessionStorage.checkCab = 3;
-        locksLeft = 2;
-      } else if (locksLeft == 3) {
+        sessionStorage.locksLeft = 2;
+      } else if (sessionStorage.locksLeft == 3) {
         text = "You try to open it but there are three locks in the way.";
-      } else if(locksLeft == 2) {
+      } else if (sessionStorage.locksLeft == 2) {
         text = "Two Locks Left";
       }
       break;
 
     case "creakyDoor":
-
+      text = "This is a text";
       break;
       
     default:
+      text = "This code is so haunted that the code brokem";
       break;
   }
 
   display();
 }
 
-//Used for Stand Still. If user is clicked on it five buttons, they die
+//Used for hallway: Stand Still. If user is clicked on the button five times, they die and must reset, Josephine
 function still() {
   standStill++;
   switch(standStill) {
@@ -84,31 +91,23 @@ function still() {
     case 3:
       text = "You stand even stiller than a statue, this does nothing."
       break;
-    case 4:
+    case 4: 
       text = "But wait, that cold wind. Is something finally happening?"
       break;
     case 5:
-      text = "It's a ghost stabing you. You died like how you lived, doing nothing."
-      setVisibility("visible", "hidden");
-      break;
-    case 6:
-      standStill = 4;
-      break;
+      text = "It's a ghost stabing you. You died like how you lived, doing nothing." 
+      firstBut.style.visibility = "hidden";
+      secBut.style.visibility = "hidden";
+      thirdBut.style.visibility = "hidden";
+      break; 
     default:
       text = "You stand so still you somehow managed to break the code."
       break;
   }
 }
 
-//Sets button visiblity
-function setVisibility(reset, others) {
-  resetBut.style.visibility = reset;
-  firstBut.style.visibility = others;
-  secBut.style.visibility = others;
-  thirdBut.style.visibility = others;
-}
 
-//Resets the story
+// Resets the story, Josephine
 function reset() {
   sessionStorage.clear();
   locksLeft = 3;
@@ -116,28 +115,45 @@ function reset() {
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
   standStill = 0;
   display();
+  img.style.visibility = "hidden";
+}
+
+// https://stackoverflow.com/questions/15076950/hide-and-then-show-an-image-using-javascript, Josephine
+// Changes the visibility of the hidden image
+function hideVisible() {
+  if (img.style.visibility == 'hidden') {
+      img.style.visibility = "visible";
+  } else {
+      img.style.visibility = "hidden";
+  }
 }
 
 
-//Displays the text in paragraph
+// Displays the text on the website, Josephine
 function display() {
   storyText.innerHTML = text;
 }
 
- function changeBackground(Num) {
+ function changeBackground(Num)//jay  
+	{
 		if (Num == 1){
 			document.body.style.backgroundImage = "url()";
+		}
+		if (Num == 2){
+			document.body.style.backgroundImage = "url()";
+		}
+		if (Num == 3){
+			document.body.style.backgroundImage = "url()";
 		}//jay 
-	 
+		if (Num == 4){
+			document.body.style.backgroundImage = "url()";
+		}//jay 
+		if (Num == 5){
+			document.body.style.backgroundImage = "url()";
+		}
+		if (Num == 1){
+			document.body.style.backgroundImage = "url()";
+		}
 	 document.body.style.backgroundImage = "url()";
  }
-
-
-
-
-// 	  function changeBackground() {
-// 		document.body.style.backgroundImage = "url('new_background_image.jpg')";
-// 	  }
-
-// 	<button onclick="changeBackground()">Change Background</button>
 

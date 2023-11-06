@@ -15,6 +15,7 @@ button {
   font-size: 15px;
 }
 
+
 body {
   background-image: url(FirstImage.jpg);
   background-repeat: no-repeat;
@@ -27,9 +28,11 @@ p {
   color: white; 
 }
 
+
 #pGrid {
-grid-column-start: span 3;
+  grid-column-start: span 3;
 }
+
 
 #cellReset {
   grid-column-start: 2;
@@ -40,7 +43,6 @@ grid-column-start: span 3;
 }
 
 .cell {
-    font-weight: bold;
     color: white;
     text-shadow: 2px 2px rgba(0,0,0,0.2);
     text-align: center;
@@ -49,7 +51,7 @@ grid-column-start: span 3;
 #grid {
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: 2fr 2fr 2fr;
+  grid-template-columns: 2fr 1.8fr 2fr;
   grid-template-rows: 2fr 1fr 1fr;
 }
 
@@ -63,24 +65,34 @@ grid-column-start: span 3;
     font-size: 34px;
     padding: 15px 25px;
   }
+
+  #hide {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 /* Styles for Tablet Viewport (min-width: 601px) and (max-width: 1024px  */
 @media ((min-width: 601px) and (max-width: 1024px)) {
   p {
-    font-size: 40px;
+    font-size: 45px;
   }
 
   button {
     font-size: 23px;
     padding: 12px 20px;
   }
+
+  #hide {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 /* Styles for Mobile Viewport (max-width: 600px) */
 @media (max-width: 600px) {
   p {
-    font-size: 29px;
+    font-size: 35px;
   }
 
   button {
@@ -88,4 +100,8 @@ grid-column-start: span 3;
     padding: 10px 19px;
   }
 
+  #hide {
+    width: 75px;
+    height: 75px;
+  }
 }
