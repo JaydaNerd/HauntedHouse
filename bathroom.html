@@ -1,3 +1,4 @@
+<!-- Josephine -->
 <!DOCTYPE html>
 <html>
 
@@ -7,37 +8,45 @@
   <title> Bathroom </title>
   <script src = "script.js" async> </script>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+  </style>
 
 </head>
 
 <body>
-  <div id="grid">
+<script src="script.js" async></script>
+<script>
+    window.onload = function() {
+        changeBackground(2);
+    };//jabari
+</script>
+  <div id = "grid">
 
-    <div class="cell" id="pGrid">
+    <div class = "cell" id = "pGrid">
       <p id = "storyText"> You found a bathroom. The window is open leaving you chilly. </p>
     </div>
 
-    <div class="cell">
+    <div class = "cell">
       <button onclick = "window.location.href = '/hallway.html'"> Back to Hallway </button>
     </div>
 
-    <div class="cell">
+    <div class = "cell">
       <button onclick = "textChange('mirror')"> Look at Mirror </button>
     </div>
 
-    <div class="cell">
+    <div class = "cell">
       <button onclick = "textChange('cabinet')"> Check Cabinet </button>
     </div>
 
-    <div class="cell" id="cellReset">
+    <div class = "cell" id="cellReset">
       <button onclick="window.location.href = '/index.html'; reset()"> Reset </button>
     </div>
 
-    <div class="cell" onclick = "hideVisible()">
-      <img src="https://th.bing.com/th/id/R.39c625ad1f9cb781e8e7680a8970dff0?rik=B9D6b5ttK0FELQ&pid=ImgRaw&r=0" alt="Broken Mirror" width="100" height="100" id = "hide">
+    <div class = "cell" onclick = "hideVisible()">
+      <img src="https://th.bing.com/th/id/R.39c625ad1f9cb781e8e7680a8970dff0?rik=B9D6b5ttK0FELQ&pid=ImgRaw&r=0" alt = "Broken Mirror" width = "100" height = "100" id = "hide">
     </div> 
   </div>
-  
+
 </body>
 
 </html>

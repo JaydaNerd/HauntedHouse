@@ -10,38 +10,43 @@
   <title> Begining </title>
   <script src="script.js" async> </script>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      background-image: url('hallway.jpg');
+    }
+  </style>
 
 </head>
 
 <body>
-  <div id="grid">
+  <div id = "grid">
 
-    <div class="cell" id="pGrid">
-      <p id="storyText"> You wake up in a strange house. You could here the faint whispers of the wind. You should try
+    <div class = "cell" id = "pGrid">
+      <p id = "storyText"> You wake up in a strange house. You could here the faint whispers of the wind. You should try
         to find an exit. </p>
     </div>
 
-    <div class="cell">
-      <button onclick="window.location.href = '/bathroom.html'" id="first">
+    <div class = "cell">
+      <button onclick = "window.location.href = '/bathroom.html'" id = "first">
         Head Right </button>
     </div>
 
-    <div class="cell">
-      <button onclick="window.location.href = '/livingRoom.html'" id="second"> Head Downstairs </button>
+    <div class = "cell">
+      <button onclick = "window.location.href = '/livingRoom.html'" id = "second"> Head Downstairs </button>
     </div>
 
-    <div class="cell">
-      <button onclick="textChange('still')" id="third"> Stand
+    <div class = "cell">
+      <button onclick="textChange('still')" id = "third"> Stand
         still </button>
     </div>
 
 
-    <div class="cell" id="cellReset">
-      <button onclick="window.location.href = '/index.html'; reset()"> Reset </button>
+    <div class = "cell" id = "cellReset">
+      <button onclick = "window.location.href = '/index.html'; reset()"> Reset </button>
     </div>
 
-    <div class="cell" onclick = "hideVisible()">
-      <img src="https://th.bing.com/th/id/OIP.Oe2sKaZAmwfxaLk6a_2MEQHaHD?pid=ImgDet&rs=1" alt="Ghost" width="100" height="100" id = "hide">
+    <div class = "cell" onclick = "hideVisible()">
+      <img src = "https://th.bing.com/th/id/OIP.Oe2sKaZAmwfxaLk6a_2MEQHaHD?pid=ImgDet&rs=1" alt = "Ghost" width = "100" height = "100" id = "hide">
     </div> 
 
   </div>

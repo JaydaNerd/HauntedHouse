@@ -1,40 +1,46 @@
+<!-- Josephine -->
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset = "utf-8">
+  <meta name = "viewport" content = "width=device-width">
   <title> Living Room </title>
   <script src = "script.js" async> </script>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href = "style.css" rel = "stylesheet" type = "text/css" />
+	<script>
+		window.onload = function() {
+			changeBackground(3);
+		};//jabari
+	</script>
 
 </head>
 
   <body>
-    <div id="grid">
+    <div id = "grid">
 
-      <div class="cell" id="pGrid">
+      <div class = "cell" id = "pGrid">
         <p id = "storyText"> You head down the creaky stairs to find the living Room. The sofas are covered with dust and the windows are locked. Somehow, there is still a fire burning.  </p>
       </div>
 
-      <div class="cell">
+      <div class = "cell">
         <button onclick = "window.location.href = '/hallway.html'"> Head Back Up </button>
       </div>
 
-      <div class="cell">
+      <div class = "cell">
         <button onclick = "textChange('frontDoor')"> Open Front Door </button>
       </div>
 
-      <div class="cell">
-        <button onclick = "textChange('creakyDoor')"> Go to Creaky Door </button>
+      <div class = "cell">
+        <button onclick = "window.location.href = '/basement.html' "textChange('creakyDoor')"> Go to Creaky Door </button>
       </div>
 
-      <div class="cell" id="cellReset">
+      <div class = "cell" id = "cellReset">
         <button onclick="window.location.href = '/index.html'; reset()"> Reset </button>
       </div>
 
-      <div class="cell" onclick = "hideVisible()">
-        <img src="https://madhalloween.com/wp-content/uploads/2020/03/Halloween-Fireplace-Haunted-Mansion.jpg" alt="Living Room" width="100" height="100" id = "hide">
+      <div class = "cell" onclick = "hideVisible()">
+        <img src = "https://th.bing.com/th/id/OIP.5E4u0KWf9Iqt5eVYqBPfqwHaLK?pid=ImgDet&rs=1" alt = "Haunted Door" width = "100" height = "100" id = "hide">
       </div> 
 
     </div>

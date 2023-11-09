@@ -1,0 +1,98 @@
+
+<!-- jabari  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Kitchen</title>
+  <script src="script.js" async></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+	body {
+	  background-color: darkslategrey;
+	  color: white;
+	}
+
+	#grid {
+	  display: grid;
+	  grid-template-columns: 1fr 1fr 1fr;
+	  gap: 20px;
+	  margin: 50px;
+	}
+
+	.cell {
+	  text-align: center;
+	}
+
+	#storyText {
+	  font-size: 20px;
+	}
+
+	button {
+	  padding: 10px;
+	  font-size: 16px;
+	  background-color: darkred;
+	  color: white;
+	  border: none;
+	  cursor: pointer;
+	}
+
+	button:hover {
+	  background-color: red;
+	}
+
+	#hide {
+	  display: block;
+	  margin: auto;
+	}
+  </style>
+
+  <script>
+	function jumpScare() {
+	  var img = document.getElementById('hide');
+	  img.src = 'https://media1.tenor.com/images/703c381992bb9f5a0d7e8d6702c61c72/tenor.gif';
+	  setTimeout(() => {
+		img.src = 'https://th.bing.com/th/id/OIP.Oe2sKaZAmwfxaLk6a_2MEQHaHD?pid=ImgDet&rs=1';
+	  }, 2000); // Change the timeout value to adjust the duration of the jumpscare effect
+	}
+  </script>
+
+</head>
+
+<body>
+  <div id="grid">
+
+	<div class="cell" id="pGrid">
+	  <p id="storyText">You enter a dilapidated kitchen. The stench of decay hangs heavily in the air. The walls seem to be closing in on you. You need to find an escape quickly.</p>
+	</div>
+
+	<div class="cell">
+	  <button onclick="window.location.href = '/bathroom.html'" id="first">Find Exit</button>
+	</div>
+
+	<div class="cell">
+	  <button onclick="window.location.href = '/livingRoom.html'" id="second">Search Cabinets</button>
+	</div>
+
+	<div class="cell">
+	  <button onclick="textChange('still')" id="third">Hold Breath</button>
+	</div>
+
+	<div class="cell" id="cellReset">
+	  <button onclick="window.location.href = '/index.html'; reset()">Reset</button>
+	</div>
+
+	<div class="cell" onclick="jumpScare()">
+	  <img src="https://th.bing.com/th/id/OIP.Oe2sKaZAmwfxaLk6a_2MEQHaHD?pid=ImgDet&rs=1" alt="Ghost" width="100" height="100" id="hide">
+	</div>
+
+  </div>
+
+</body>
+
+</html>
+```
+

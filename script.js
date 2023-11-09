@@ -1,13 +1,20 @@
-storyText = document.getElementById("storyText");
+// Used to change all paragraph text
+storyText = document.getElementById("storyText"); 
+text = "";
+
+// Used for index and hallway to hide buttons
 firstBut = document.getElementById("first");
 secBut = document.getElementById("second");
 thirdBut = document.getElementById("third");
-resetBut = document.getElementById("reset");
-img = document.getElementById('hide');
 
-text = "";
-standStill = 0;
-foundAll = false; 
+// Used by all 
+resetBut = document.getElementById("reset");
+
+// For hidden images
+img = document.getElementById('hide'); 
+
+// For index and hallway, standStill
+standStill = 0; 
 
 // Changes paragraph text
 let textChange = (curText) => {
@@ -27,7 +34,7 @@ let textChange = (curText) => {
         text = "You open the broken cabinet and found a note inside. It states break the mirror.";
         sessionStorage.checkCab = 1;
       } else if (sessionStorage.checkCab == 1) {
-        text = "The cabinet sits empty and uninteresting. You really should break the mirror";
+        text = "The cabinet sits empty and uninteresting. You really should break the mirror.";
       } else if (sessionStorage.checkCab  >= 2) {
         text = "There is nothing left.";
       }
@@ -58,11 +65,15 @@ let textChange = (curText) => {
       if ((sessionStorage.checkCab == 2)) {
         text = "You place the golden key onto the lock. Clink, the lock and key turn to dust. You can feel shivers down your spine.";
         sessionStorage.checkCab = 3;
-        sessionStorage.locksLeft = 2;
+        sessionStorage.locksLeft--;
       } else if (sessionStorage.locksLeft == 3) {
         text = "You try to open it but there are three locks in the way.";
       } else if (sessionStorage.locksLeft == 2) {
         text = "Two Locks Left";
+      } else if (sessionStorage.locksLeft == 1) {
+        text = "One Lock Left";
+      } else if (sessionStorage.locksLeft == 0) {
+        text = "The door creaks open ";
       }
       break;
 
@@ -71,14 +82,14 @@ let textChange = (curText) => {
       break;
       
     default:
-      text = "This code is so haunted that the code brokem";
+      text = "This code is so haunted that the code broken";
       break;
   }
 
   display();
 }
 
-//Used for hallway: Stand Still. If user is clicked on the button five times, they die and must reset, Josephine
+// Used for hallway: Stand Still. If user is clicked on the button five times, they die and must reset, Josephine
 function still() {
   standStill++;
   switch(standStill) {
@@ -110,7 +121,6 @@ function still() {
 // Resets the story, Josephine
 function reset() {
   sessionStorage.clear();
-  locksLeft = 3;
   setVisibility("hidden", "visible");
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
   standStill = 0;
@@ -128,32 +138,26 @@ function hideVisible() {
   }
 }
 
-
 // Displays the text on the website, Josephine
 function display() {
   storyText.innerHTML = text;
 }
 
- function changeBackground(Num)//jay  
-	{
-		if (Num == 1){
-			document.body.style.backgroundImage = "url()";
-		}
-		if (Num == 2){
-			document.body.style.backgroundImage = "url()";
-		}
-		if (Num == 3){
-			document.body.style.backgroundImage = "url()";
-		}//jay 
-		if (Num == 4){
-			document.body.style.backgroundImage = "url()";
-		}//jay 
-		if (Num == 5){
-			document.body.style.backgroundImage = "url()";
-		}
-		if (Num == 1){
-			document.body.style.backgroundImage = "url()";
-		}
-	 document.body.style.backgroundImage = "url()";
- }
+//jabari
+function changeBackground(Num) {
+  if (Num == 1) {
+	document.body.style.backgroundImage = "url('hallway.jpg')";
+  } else if (Num == 2) {
+	document.body.style.backgroundImage = "url('bathroom.jpg')";
+  } else if (Num == 3) {
+	document.body.style.backgroundImage = "url('livingroom.jpg')";
+  } else if (Num == 4) {
+	document.body.style.backgroundImage = "url('')";
+  } else if (Num == 5) {
+	document.body.style.backgroundImage = "url('basement.jpg')";
+  } else {
+	document.body.style.backgroundImage = "url('defaultImage.jpg')"; 
+  }
+}
+
 
