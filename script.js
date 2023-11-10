@@ -16,6 +16,14 @@ img = document.getElementById('hide');
 // For index and hallway, standStill
 standStill = 0; 
 
+if(!sessionStorage.locksLeft) {
+  sessionStorage.locksLeft = 3;
+}
+
+if(!sessionStorage.checkCab) {
+  sessionStorage.checkCab = 0;
+}
+
 // Changes paragraph text
 let textChange = (curText) => {
   switch(curText) {

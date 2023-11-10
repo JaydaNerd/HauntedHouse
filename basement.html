@@ -20,23 +20,37 @@
   </style>
 
   <script>
-		  window.onload = function() {
-			  changeBackground(5);
-		  };//jabari
-	 
-	function jumpScare() {
-	  var img = document.createElement("img");
-	  img.src = 'jumpscare.jpeg';
-	  img.id = 'jumpscareImage';
-	  document.body.appendChild(img);
-	  setTimeout(() => {
-		var jumpscareImage = document.getElementById('jumpscareImage');
-		jumpscareImage.parentNode.removeChild(jumpscareImage);
-	  }, 2000); 
-	}
+	window.onload = function() {
+	  changeBackground(5);
+	}; //jabari
 
-	
-	  
+	   function jumpScare() {
+		var img = document.createElement("img");
+		img.src = 'jumpscare.jpeg';
+		img.id = 'jumpscareImage';
+		document.body.appendChild(img);
+
+		// Play sound
+		var audio = new Audio('Scream.mp3');
+		audio.play();
+
+		setTimeout(() => {
+		  var jumpscareImage = document.getElementById('jumpscareImage');
+		  jumpscareImage.parentNode.removeChild(jumpscareImage);
+		}, 2000);
+	  }
+
+	function changeText() {
+	  var dynamicText = document.getElementById('dynamicTex');
+	  var texts = [
+		"You feel your foot hit against something as your eyes adjust to the darkness you notice the body, and something else.",
+		"you reach down and feel a key, you tug on it hearing it exit the rotten flesh of the body, "
+	  ];
+	  var clickCount = dynamicText.dataset.clickCount || 0;
+
+	  dynamicText.innerHTML = texts[clickCount % texts.length];
+	  dynamicText.dataset.clickCount = ++clickCount;
+	}
   </script>
 
 </head>
@@ -44,40 +58,28 @@
 <body>
   <div id="grid">
 
-	<div class="cell" id="pGrid">
-	  <p id="storyText">You find yourself in the eerie basement. Strange shadows flicker across the walls. The air is thick with an unsettling presence. You must find a way out quickly.</p>
-	</div>
+    <div class="cell" id="pGrid">
+      <p id="storyText">You find yourself in the eerie basement. Strange shadows flicker across the walls. The air is thick with an unsettling presence. You must find a way out quickly.</p>
+    </div>
 
-	<div class="cell">
-	  <button onclick="window.location.href = '/kitchen.html'" id="first">Climb Stairs</button>
-	</div>
+    <div class="cell">
+      <button onclick="window.location.href = '/kitchen.html';" id="first">Climb Stairs</button>
+    </div>
 
-	   <div class="cell">
-		  <button onclick="changeText()">Venture Deeper</button>
-		</div>
+    <div class="cell">
+      <button onclick="changeText();">Venture Deeper</button>
+    </div>
 
-		<p id="dynamicTex"></p>
+    <p id="dynamicTex"></p>
 
-		<script>
-		  var clickCount = 0;
-		  var texts = [
-			"You feel your foot hit against something as your eyes adjust to the darkness you notice the body, and something else.",
-			"you reach down and feel a key, you tug on it hearing it exit the rotten flesh of the body, "
-		  ];
 
-		  function changeText() {
-			document.getElementById("dynamicText").innerHTML = texts[clickCount % texts.length];
-			clickCount++;
-		  } 
-		</script>
+    <div class="cell">
+      <button onclick="jumpScare();" id="third">Stand still</button>
+    </div>
 
-	<div class="cell">
-	  <button onclick="jumpScare();" id="third">Stand still</button>
-	</div>
-
-	<div class="cell" id="cellReset">
-	  <button onclick="window.location.href = '/index.html'; reset()">Reset</button>
-	</div>
+    <div class="cell" id="cellReset">
+      <button onclick="window.location.href = '/index.html'; reset()">Reset</button>
+    </div>
 
   </div>
 
