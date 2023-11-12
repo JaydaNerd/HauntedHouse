@@ -24,6 +24,8 @@ if(!sessionStorage.checkCab) {
   sessionStorage.checkCab = 0;
 }
 
+
+
 // Changes paragraph text
 let textChange = (curText) => {
   switch(curText) {
@@ -31,23 +33,7 @@ let textChange = (curText) => {
     case "still":
       still();
       break;
-      
-    // bathroom: Check Cabinet, Josephine
-    case "cabinet":
-      if(!sessionStorage.checkCab) {
-        sessionStorage.checkCab = 0;
-      }
-
-      if(sessionStorage.checkCab == 0) {
-        text = "You open the broken cabinet and found a note inside. It states break the mirror.";
-        sessionStorage.checkCab = 1;
-      } else if (sessionStorage.checkCab == 1) {
-        text = "The cabinet sits empty and uninteresting. You really should break the mirror.";
-      } else if (sessionStorage.checkCab  >= 2) {
-        text = "There is nothing left.";
-      }
-      break;
-      
+           
     // bathroom: Check Mirror, Josephine
     case "mirror":
       if(!sessionStorage.checkCab) {
@@ -58,33 +44,50 @@ let textChange = (curText) => {
         text = "You look at yourself in the mirror, you look terrified.";
       } else if(sessionStorage.checkCab == 1) {
         text = "You look around, finding a hammer. You throw it, breaking the mirror. You find a golden key hidden within it.";
+		  incrementKeysFound();
+		  alert("You found a key! You have " + (3 - getKeysFound()) + " keys left to find."); //jabari
         sessionStorage.checkCab = 2;
       } else if (sessionStorage.checkCab >= 2) {
         text = "All that's left is shards.";
       }
       break;
-      
-    // living room: Open Front Door, Josephine
-    case "frontDoor":
-      if(!sessionStorage.locksLeft) {
-        sessionStorage.locksLeft = 3;
-      }
-      
-      if ((sessionStorage.checkCab == 2)) {
-        text = "You place the golden key onto the lock. Clink, the lock and key turn to dust. You can feel shivers down your spine.";
-        sessionStorage.checkCab = 3;
-        sessionStorage.locksLeft--;
-      } else if (sessionStorage.locksLeft == 3) {
-        text = "You try to open it but there are three locks in the way.";
-      } else if (sessionStorage.locksLeft == 2) {
-        text = "Two Locks Left";
-      } else if (sessionStorage.locksLeft == 1) {
-        text = "One Lock Left";
-      } else if (sessionStorage.locksLeft == 0) {
-        text = "The door creaks open ";
-      }
-      break;
+    
+      // bathroom: Check Cabinet, Josephine
+      case "cabinet":
+        if(!sessionStorage.checkCab) {
+          sessionStorage.checkCab = 0;
+        }
 
+        if(sessionStorage.checkCab == 0) {
+          text = "You open the broken cabinet and found a note inside. It states break the mirror.";
+          sessionStorage.checkCab = 1;
+        } else if (sessionStorage.checkCab == 1) {
+          text = "The cabinet sits empty and uninteresting. You really should break the mirror";
+        } else if (sessionStorage.checkCab  >= 2) {
+          text = "There is nothing left.";
+        }
+        break;
+  
+      // living room: Open Front Door, Jabari & Josphene 
+      // This code Jabari
+          case "frontDoor":
+    
+  
+    	if (getKeysFound() == 0) {
+    text = "You try to open it but there are three locks in the way.";
+  } else if (getKeysFound() == 1) {
+    text = "Two Locks Left";
+  } else if (getKeysFound() == 2) {
+    text = "One Lock Left";
+  } else if (getKeysFound() == 3) {
+    text = "The door creaks open, and you run out but somethings wrong";
+	jumpScare()
+    setTimeout(function () {
+      window.location.href = '/end2.html';
+    }, 2500);
+  }
+      break;
+		  
     case "creakyDoor":
       text = "This is a text";
       break;
@@ -118,6 +121,10 @@ function still() {
       firstBut.style.visibility = "hidden";
       secBut.style.visibility = "hidden";
       thirdBut.style.visibility = "hidden";
+		   setTimeout(function () {
+				window.location.href = '/end2.html';
+			  }, 2000);
+			
       break; 
     default:
       text = "You stand so still you somehow managed to break the code."
@@ -129,6 +136,8 @@ function still() {
 // Resets the story, Josephine
 function reset() {
   sessionStorage.clear();
+  localStorage.clear();
+  setKeysFound(0);
   setVisibility("hidden", "visible");
   text = "You wake up in a strange house. You could here the faint whispers of the wind. You should try to find an exit."
   standStill = 0;
@@ -164,8 +173,43 @@ function changeBackground(Num) {
   } else if (Num == 5) {
 	document.body.style.backgroundImage = "url('basement.jpg')";
   } else {
-	document.body.style.backgroundImage = "url('defaultImage.jpg')"; 
+	document.body.style.backgroundImage = "url('kitchen.jpg')"; 
   }
 }
+
+// Jabari
+function getKeysFound() {
+  return parseInt(localStorage.getItem('keysFound')) || 0;
+}
+
+// Jabari
+function setKeysFound(keysFound) {
+  // Store the keysFound value in localStorage
+  localStorage.setItem('keysFound', keysFound);
+}
+
+// Jabari
+function incrementKeysFound() {
+  var keysFound = getKeysFound() + 1;
+  setKeysFound(keysFound);
+  return keysFound;
+}
+
+function jumpScare() {
+	var img = document.createElement("img");
+	img.src = 'jumpscare.jpeg';
+	img.id = 'jumpscareImage';
+	document.body.appendChild(img);
+
+	// Play sound
+	var audio = new Audio('Scream.mp3');
+	audio.play();
+
+	setTimeout(() => {
+	  var jumpscareImage = document.getElementById('jumpscareImage');
+	  jumpscareImage.parentNode.removeChild(jumpscareImage);
+	}, 2000);
+  }
+
 
 

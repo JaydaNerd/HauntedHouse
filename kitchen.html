@@ -9,7 +9,7 @@
   <script src="script.js" async></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
 
-  < <style>
+  <style>
 		  #jumpscareImage {
 			display: block;
 			position: absolute;
@@ -21,9 +21,10 @@
 		</style>
 
 		<script>
+
 		  window.onload = function() {
-			changeBackground(5);
-		  }; //jabari
+			changeBackground(6);
+		  } //jabari
 
 		  function jumpScare() {
   var img = document.createElement("img");
@@ -41,33 +42,50 @@
   }, 2000);
 }
 
-	var keysFound = 0;
-
+	let x = false; 
 	
 
 	function checkKey() {
-	  if (keysFound >= 3) {
-		alert("You have found all the keys! You can escape through the back door in the kitchen.");
-		// Additional actions or redirection code here
-	  } else {
-		keysFound++;
-		alert("You found a key! You have " + (3 - keysFound) + " keys left to find.");
+	  if (x) {
+		alert("You have already found the key!");
+		return;
 	  }
-	}
 
-	function reset() {
-	  keysFound = 0;
+	  if (getKeysFound() >= 3) {
+		alert("You have found all the keys! You can escape through the back door in the kitchen, or the front door in the living room.");
+		localStorage.setItem('keyCheckPerformed', 'true');
+	  } else {
+		incrementKeysFound();
+		alert("You found a key! You have " + (3 - getKeysFound()) + " keys left to find.");
+		  x = true; 
+		  
+	  }
 	}
 
 	function changeText(newText) {
 	  var storyText = document.getElementById('storyText');
 	  storyText.innerText = newText;
 	}
+
+			function exit() {
+			  if (getKeysFound() === 3) {
+				changeText("You found all the keys you open the door, running out the house.");
+				setTimeout(function () {
+				window.location.href = '/end.html';
+				}, 2500)
+			  } else {
+				changeText("You need more keys. Look around the house.");
+				setTimeout(function () {
+				  window.location.href = '/hallway.html';
+				}, 2500);
+			  }
+			}		
   </script>
 
 </head>
 
 <body>
+	
   <div id="grid">
 
 	<div class="cell" id="pGrid">
@@ -75,7 +93,7 @@
 	</div>
 
 	<div class="cell">
-	  <button onclick="checkKey(); window.location.href = '/bathroom.html'; changeText('You found a key and decided to leave the kitchen.')" id="first">Find Exit</button>
+		<button onclick="exit();" id="first">Find Exit</button>
 	</div>
 
 	<div class="cell">
@@ -89,9 +107,7 @@
 	<div class="cell" id="cellReset">
 	  <button onclick="window.location.href = '/index.html'; reset(); changeText('Game reset.')" id="reset">Reset</button>
 	</div>
-
-	
-
+    
   </div>
 
 </body>

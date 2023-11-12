@@ -9,47 +9,71 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 
   <style>
-	#jumpscareImage {
-	  display: block;
-	  position: absolute;
-	  top: 50%;
-	  left: 50%;
-	  transform: translate(-50%, -50%);
-	  z-index: 1;
-	}
+    #jumpscareImage {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
   </style>
 
   <script>
-	window.onload = function() {
-	  changeBackground(5);
-	}; //jabari
+    window.onload = function () {
+      changeBackground(5);
+    };
 
-	   function jumpScare() {
-		var img = document.createElement("img");
-		img.src = 'jumpscare.jpeg';
-		img.id = 'jumpscareImage';
-		document.body.appendChild(img);
+    function jumpScare() {
+      var img = document.createElement("img");
+      img.src = 'jumpscare.jpeg';
+      img.id = 'jumpscareImage';
+      document.body.appendChild(img);
 
-		// Play sound
-		var audio = new Audio('Scream.mp3');
-		audio.play();
+      // Play sound
+      var audio = new Audio('Scream.mp3');
+      audio.play();
 
-		setTimeout(() => {
-		  var jumpscareImage = document.getElementById('jumpscareImage');
-		  jumpscareImage.parentNode.removeChild(jumpscareImage);
-		}, 2000);
-	  }
+      setTimeout(() => {
+        var jumpscareImage = document.getElementById('jumpscareImage');
+        jumpscareImage.parentNode.removeChild(jumpscareImage);
+      }, 2000);
+    }
 
-	function changeText() {
-	  var dynamicText = document.getElementById('dynamicTex');
-	  var texts = [
-		"You feel your foot hit against something as your eyes adjust to the darkness you notice the body, and something else.",
-		"you reach down and feel a key, you tug on it hearing it exit the rotten flesh of the body, "
-	  ];
-	  var clickCount = dynamicText.dataset.clickCount || 0;
+ function changeText() {
+  var storyText = document.getElementById('storyText');
+  var texts = [
+    "You find yourself in the eerie basement. Strange shadows flicker across the walls. The air is thick with an unsettling presence. You must find a way out quickly.",
+    "You feel your foot hit against something as your eyes adjust to the darkness you notice the body, and something else.",
+    "You reach down and feel a key, you tug on it hearing it exit the rotten flesh of the body."
+  ];
+  var clickCount = storyText.dataset.clickCount || 0;
+  
+  storyText.innerHTML = texts[clickCount % texts.length];
+  storyText.dataset.clickCount = ++clickCount;
 
-	  dynamicText.innerHTML = texts[clickCount % texts.length];
-	  dynamicText.dataset.clickCount = ++clickCount;
+  if (clickCount === 3) {
+    checkKey();
+  }
+}
+
+	let x = false;
+	
+	function checkKey() {
+		if (x == 'true') {
+		  alert("You have already found the keys!");
+		  return;
+		}
+
+
+		if (getKeysFound() >= 3) {
+		  alert("You have found all the keys! You can escape through the back door in the kitchen.");
+		  localStorage.setItem('keyCheckPerformed', 'true');
+		} else {
+		  incrementKeysFound();
+		  alert("You found a key! You have " + (3 - getKeysFound()) + " keys left to find.");
+			x = true; 
+		}
 	}
   </script>
 
@@ -69,9 +93,6 @@
     <div class="cell">
       <button onclick="changeText();">Venture Deeper</button>
     </div>
-
-    <p id="dynamicTex"></p>
-
 
     <div class="cell">
       <button onclick="jumpScare();" id="third">Stand still</button>
