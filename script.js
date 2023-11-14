@@ -71,8 +71,6 @@ let textChange = (curText) => {
       // living room: Open Front Door, Jabari & Josphene 
       // This code Jabari
           case "frontDoor":
-    
-  
     	if (getKeysFound() == 0) {
     text = "You try to open it but there are three locks in the way.";
   } else if (getKeysFound() == 1) {
